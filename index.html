@@ -43,7 +43,7 @@ h1{
 
 #typingText{
   font-size:20px;
-  min-height:60px;
+  min-height:70px;
   margin-top:15px;
 }
 
@@ -64,13 +64,14 @@ button{
 }
 
 .yes:hover{
-  transform:scale(1.1);
+  transform:scale(1.15);
 }
 
 .no{
   background:transparent;
   border:2px solid white;
   color:white;
+  position:relative;
 }
 
 #answer{
@@ -88,24 +89,24 @@ button{
   <div id="typingText"></div>
 
   <h2 id="question" style="display:none;">
-    Ke tu meri zindagi ka hissa banegi?
+    Ke tu meri zindagi ka sabte khaas hissa banegi?
   </h2>
 
   <button class="yes" onclick="showAnswer()">Haan</button>
-  <button class="no" onclick="moveButton(this)">Na</button>
+  <button class="no" onmouseover="moveButton(this)">Na</button>
 
   <div id="answer"></div>
 </div>
 
 <script>
-const text = "Jab te tu meri zindagi me aayi se, sab kuch badhiya ho liya se. Teri hasi dekh ke din ban ja se. Ek baat puchni thi manne...";
+const text = "Jab te tu meri zindagi me aayi se, sab kuch aur bhi badhiya ho liya se... Teri hasi dekh ke din ban ja se. Sach kahu toh, tu mere liye bohot khaas se. Ek baat dil te puchni thi manne...";
 let index = 0;
 
 function typeEffect(){
   if(index < text.length){
     document.getElementById("typingText").innerHTML += text.charAt(index);
     index++;
-    setTimeout(typeEffect, 50);
+    setTimeout(typeEffect, 70);  // slow typing
   } else {
     document.getElementById("question").style.display="block";
     document.querySelector(".yes").style.display="inline-block";
@@ -117,13 +118,13 @@ window.onload = typeEffect;
 
 function showAnswer(){
   document.getElementById("answer").innerHTML =
-  "Pakki baat se, main hamesha tera saath dunga.";
+  "Pakki baat se, main hamesha tera maan rakhunga, tera saath dunga, aur har musibat me tere aage khada rahunga.";
 }
 
 function moveButton(btn){
   btn.style.position="absolute";
-  btn.style.top=Math.random()*window.innerHeight+"px";
-  btn.style.left=Math.random()*window.innerWidth+"px";
+  btn.style.top=Math.random()*(window.innerHeight-50)+"px";
+  btn.style.left=Math.random()*(window.innerWidth-100)+"px";
 }
 
 /* Floating Hearts */
@@ -132,15 +133,15 @@ function createHeart(){
   heart.classList.add("heart");
   heart.innerHTML="❤";
   heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(Math.random()*3+3)+"s";
+  heart.style.animationDuration=(Math.random()*2+3)+"s";
   document.body.appendChild(heart);
 
   setTimeout(()=>{
     heart.remove();
-  },6000);
+  },5000);
 }
 
-setInterval(createHeart,300);
+setInterval(createHeart,250);
 </script>
 
 </body>
