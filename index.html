@@ -2,59 +2,99 @@
 <html>
 <head>
 <title>For Someone Special</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{
   margin:0;
   padding:0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  font-family: 'Poppins', sans-serif;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  overflow:hidden;
   text-align:center;
-  color:#333;
+  color:white;
 }
+
+@keyframes gradientBG {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
 .container{
-  margin-top:100px;
+  animation: fadeIn 2s ease-in-out;
 }
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
 h1{
-  font-size:40px;
+  font-size:45px;
+  margin-bottom:10px;
 }
+
 p{
   font-size:20px;
-  width:70%;
+  width:80%;
   margin:auto;
 }
+
 button{
-  padding:12px 25px;
-  font-size:18px;
+  padding:12px 30px;
+  font-size:20px;
   border:none;
-  border-radius:25px;
-  background-color:#ff4b5c;
-  color:white;
+  border-radius:30px;
   cursor:pointer;
   margin-top:20px;
+  transition:0.3s;
 }
-button:hover{
-  background-color:#e8434f;
+
+.yes{
+  background:white;
+  color:#ff4b5c;
 }
+
+.yes:hover{
+  transform:scale(1.1);
+}
+
+.no{
+  background:transparent;
+  border:2px solid white;
+  color:white;
+  position:relative;
+}
+
 #answer{
-  font-size:25px;
+  font-size:28px;
   margin-top:20px;
   font-weight:bold;
+  animation: fadeIn 1s ease-in-out;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
   <h1>Hey [Uska Naam]</h1>
   <p>
-    Jab se tum meri life me aayi ho, sab kuch special ho gaya hai.
+    Jab se tum meri life me aayi ho, har din special lagta hai.
     Tumhari smile meri sabse badi happiness hai.
-    Main bas itna puchna chahta hoon...
+    Main tumse ek important baat poochna chahta hoon...
   </p>
 
   <h2>Kya tum meri life ka permanent part banogi?</h2>
 
-  <button onclick="showAnswer()">Yes</button>
+  <button class="yes" onclick="showAnswer()">Yes</button>
+  <button class="no" onmouseover="moveButton(this)">No</button>
 
   <div id="answer"></div>
 </div>
@@ -62,7 +102,13 @@ button:hover{
 <script>
 function showAnswer(){
   document.getElementById("answer").innerHTML =
-  "I promise main hamesha tumhe respect aur care dunga.";
+  "I promise main hamesha tumhe respect, support aur care dunga.";
+}
+
+function moveButton(btn){
+  btn.style.position = "absolute";
+  btn.style.top = Math.random() * window.innerHeight + "px";
+  btn.style.left = Math.random() * window.innerWidth + "px";
 }
 </script>
 
