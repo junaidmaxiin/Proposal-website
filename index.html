@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For Someone Special</title>
+<title>Ek Baat Sunle</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{
   margin:0;
   padding:0;
-  font-family: 'Poppins', sans-serif;
   height:100vh;
+  overflow:hidden;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#ff6a88,#ff99ac);
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
-  overflow:hidden;
   text-align:center;
   color:white;
 }
 
-@keyframes gradientBG {
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+/* Floating Hearts */
+.heart{
+  position:absolute;
+  bottom:-50px;
+  font-size:22px;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  0%{transform: translateY(0); opacity:1;}
+  100%{transform: translateY(-100vh); opacity:0;}
 }
 
 .container{
+  position:relative;
+  z-index:10;
   animation: fadeIn 2s ease-in-out;
+  max-width:90%;
 }
 
 @keyframes fadeIn{
@@ -36,23 +44,20 @@ body{
 }
 
 h1{
-  font-size:45px;
-  margin-bottom:10px;
+  font-size:38px;
 }
 
 p{
   font-size:20px;
-  width:80%;
-  margin:auto;
 }
 
 button{
   padding:12px 30px;
-  font-size:20px;
+  font-size:18px;
   border:none;
-  border-radius:30px;
+  border-radius:25px;
   cursor:pointer;
-  margin-top:20px;
+  margin:15px;
   transition:0.3s;
 }
 
@@ -69,14 +74,12 @@ button{
   background:transparent;
   border:2px solid white;
   color:white;
-  position:relative;
 }
 
 #answer{
-  font-size:28px;
+  font-size:24px;
   margin-top:20px;
   font-weight:bold;
-  animation: fadeIn 1s ease-in-out;
 }
 </style>
 </head>
@@ -84,17 +87,18 @@ button{
 <body>
 
 <div class="container">
-  <h1>Hey [Uska Naam]</h1>
+  <h1>Sunle [ HIMMU ❤️ ]</h1>
   <p>
-    Jab se tum meri life me aayi ho, har din special lagta hai.
-    Tumhari smile meri sabse badi happiness hai.
-    Main tumse ek important baat poochna chahta hoon...
+    Jab te tu meri zindagi me aayi se,
+    sab kuch badhiya ho liya se.
+    Teri hasi dekh ke din ban ja se.
+    Ek baat puchni thi manne...
   </p>
 
-  <h2>Kya tum meri life ka permanent part banogi?</h2>
+  <h2>Ke tu meri zindagi ka hissa banegi?</h2>
 
-  <button class="yes" onclick="showAnswer()">Yes</button>
-  <button class="no" onmouseover="moveButton(this)">No</button>
+  <button class="yes" onclick="showAnswer()">Haan</button>
+  <button class="no" onclick="moveButton(this)">Na</button>
 
   <div id="answer"></div>
 </div>
@@ -102,14 +106,30 @@ button{
 <script>
 function showAnswer(){
   document.getElementById("answer").innerHTML =
-  "I promise main hamesha tumhe respect, support aur care dunga.";
+  "Pakki baat se, main hamesha tera saath dunga.";
 }
 
 function moveButton(btn){
-  btn.style.position = "absolute";
-  btn.style.top = Math.random() * window.innerHeight + "px";
-  btn.style.left = Math.random() * window.innerWidth + "px";
+  btn.style.position="absolute";
+  btn.style.top=Math.random()*window.innerHeight+"px";
+  btn.style.left=Math.random()*window.innerWidth+"px";
 }
+
+/* Floating Hearts */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*3+3)+"s";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },6000);
+}
+
+setInterval(createHeart,300);
 </script>
 
 </body>
