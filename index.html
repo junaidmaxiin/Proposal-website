@@ -34,21 +34,17 @@ body{
 .container{
   position:relative;
   z-index:10;
-  animation: fadeIn 2s ease-in-out;
   max-width:90%;
-}
-
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
 }
 
 h1{
   font-size:38px;
 }
 
-p{
+#typingText{
   font-size:20px;
+  min-height:60px;
+  margin-top:15px;
 }
 
 button{
@@ -59,6 +55,7 @@ button{
   cursor:pointer;
   margin:15px;
   transition:0.3s;
+  display:none;
 }
 
 .yes{
@@ -87,15 +84,12 @@ button{
 <body>
 
 <div class="container">
-  <h1>Sunle [ HIMMU ❤️ ]</h1>
-  <p>
-    Jab te tu meri zindagi me aayi se,
-    sab kuch badhiya ho liya se.
-    Teri hasi dekh ke din ban ja se.
-    Ek baat puchni thi manne...
-  </p>
+  <h1>Sunle [HIMMU❤️]</h1>
+  <div id="typingText"></div>
 
-  <h2>Ke tu meri zindagi ka hissa banegi?</h2>
+  <h2 id="question" style="display:none;">
+    Ke tu meri zindagi ka hissa banegi?
+  </h2>
 
   <button class="yes" onclick="showAnswer()">Haan</button>
   <button class="no" onclick="moveButton(this)">Na</button>
@@ -104,6 +98,23 @@ button{
 </div>
 
 <script>
+const text = "Jab te tu meri zindagi me aayi se, sab kuch badhiya ho liya se. Teri hasi dekh ke din ban ja se. Ek baat puchni thi manne...";
+let index = 0;
+
+function typeEffect(){
+  if(index < text.length){
+    document.getElementById("typingText").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 50);
+  } else {
+    document.getElementById("question").style.display="block";
+    document.querySelector(".yes").style.display="inline-block";
+    document.querySelector(".no").style.display="inline-block";
+  }
+}
+
+window.onload = typeEffect;
+
 function showAnswer(){
   document.getElementById("answer").innerHTML =
   "Pakki baat se, main hamesha tera saath dunga.";
